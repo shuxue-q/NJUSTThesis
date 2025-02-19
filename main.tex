@@ -1,0 +1,74 @@
+\documentclass{NJUSTThesis}
+
+\usepackage{amsmath} % 数学功能的宏包
+%\usepackage{unicode-math} % 设置数学字体Unicode宏包
+\usepackage[hidelinks]{hyperref} % 超链接
+\usepackage{booktabs} % 提供三线表功能
+\usepackage{subcaption} % 提供子图功能，不能使用subfigure宏包
+\usepackage{appendix} % 附录功能
+
+\hypersetup{
+  bookmarksnumbered=true, % 在书签中显示章节编号
+  bookmarksopen=true, % 展开书签
+}
+
+% 设置数学字体为 XITS Math，类罗马字体风格，需要先安装该字体
+% \setmathfont{Times New Roman} % 设置数学字体为新罗马字体
+%\setmathfont{XITS Math}
+\usepackage[subscriptcorrection,slantedGreek,nofontinfo]{mtpro2}
+
+%\everymath{\displaystyle} % 行内公式为展示模式
+ 
+\addbibresource[location=local]{reference.bib}
+
+\njustsetup{
+  info = {
+  % 标题
+    title = {
+      zh = {南京理工大学本科\\学士学位论文\LaTeX{}模板},
+      en ={Nanjing University of Science \& Technology \\ \LaTeX{} Template},
+    },
+    author = {
+      zh = {书雪},
+      en = {Xue Shu}, % 作者姓名
+    },
+    tutor = {
+      school/zh = {书雪},
+      external/zh = {王麻子}, % 指导老师
+      school/level = {教授},
+      external/level = {副教授}, % 导师职称
+      school/en = {Xue Shu},
+      external/en = {Wang Mazi} % 英语姓名
+    },
+    number = {123456}, % 学号
+    major = {专业}, % 专业
+    direction = {\LaTeX{}}, % 研究方向
+    school = {学院}, % 学院
+    %date = {2025年6月}, % 设置时间，不设置则为当前时间
+  },
+  figtab = true,  %生成图表目录
+  fontset = songti, % 正文宋体
+  keywords = {
+    zh = {南京理工大学，本科学士学位论文，模板},
+    en = {NJUST,Bachlor,Thesis,Template},
+  }
+}
+
+% 代码抄录环境设置
+\input{./preable/preable.tex}
+
+\begin{document}
+
+
+\NJUSTCover % 制作封面
+% \includepdf[pagecommand=\thispagestyle{empty}]{./cover/cover.pdf} % 自行制作封面
+
+\NJUSTStatement % 打印声明页
+
+\include{./content/abstract} % 摘要
+
+\NJUSTContents % 打印目录
+
+\include{./content/introduction}
+
+\end{document}

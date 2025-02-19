@@ -1,0 +1,57 @@
+% ! TEX root = ./main.tex
+
+% 代码抄录环境
+\usepackage{listings}
+
+% 设置mono字体
+\setmonofont{Monaco Nerd Font Mono}
+\setCJKmonofont{PingFang SC}
+
+\usepackage[dvipsnames]{xcolor}
+% 在导言区进行样式设置
+\lstset{basicstyle=\ttfamily,breaklines=true}
+
+\definecolor{structurecolor}{RGB}{0, 174, 247}
+\definecolor{lightgrey}{rgb}{0.9,0.9,0.9}
+\definecolor{frenchplum}{RGB}{190,20,83}
+\definecolor{winered}{RGB}{212, 51, 131}
+\lstset{language=[LaTeX]TeX,
+  texcsstyle=*\color{winered},
+  numbers=none,
+  mathescape=false,
+  breaklines=true,
+  keywordstyle=\color{winered},
+  commentstyle=\color{gray},
+  emph={
+    booktabs,
+    tabular,
+    BibTeX,
+    cite,
+    amsmath,
+    bibstyle,
+    },
+  emphstyle={\color{frenchplum}},
+  morekeywords={
+    englishtitle,
+    NJUSTCover,
+    includepdf,
+    authorname,
+    tutor,
+    post,
+    englishtutor,
+    major,
+    direction,
+    school,
+    NJUSTContents,
+    subsubsubsection,
+    addbibresource,
+    printreference,
+    },
+  frame=single,
+  tabsize=2,
+  numbers=left,
+  rulecolor=\color{structurecolor},
+  framerule=0.2pt,
+  columns=flexible,
+  % backgroundcolor=\color{lightgrey}
+}
