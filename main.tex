@@ -2,24 +2,21 @@
 
 \usepackage{amsmath} % 数学功能的宏包
 %\usepackage{unicode-math} % 设置数学字体Unicode宏包
-\usepackage[hidelinks]{hyperref} % 超链接
-\usepackage{booktabs} % 提供三线表功能
-\usepackage{subcaption} % 提供子图功能，不能使用subfigure宏包
 \usepackage{appendix} % 附录功能
-
-\hypersetup{
-  bookmarksnumbered=true, % 在书签中显示章节编号
-  bookmarksopen=true, % 展开书签
-}
 
 % 设置数学字体为 XITS Math，类罗马字体风格，需要先安装该字体
 % \setmathfont{Times New Roman} % 设置数学字体为新罗马字体
 %\setmathfont{XITS Math}
-\usepackage[subscriptcorrection,slantedGreek,nofontinfo]{mtpro2}
+% \usepackage[subscriptcorrection,slantedGreek,nofontinfo]{mtpro2}
 
 %\everymath{\displaystyle} % 行内公式为展示模式
  
 \addbibresource[location=local]{reference.bib}
+
+% 定义一个白色边框的盒子，用来标识重要结果
+\newcommand\mybox[1]{
+  \color{white}\boxed{\color{black}#1}
+}
 
 \njustsetup{
   info = {
@@ -58,7 +55,6 @@
 \input{./preable/preable.tex}
 
 \begin{document}
-
 
 \NJUSTCover % 制作封面
 % \includepdf[pagecommand=\thispagestyle{empty}]{./cover/cover.pdf} % 自行制作封面

@@ -65,7 +65,7 @@
 \setlength{\footskip}{5mm}
 \tocloftpagestyle{fancy}
 \fancypagestyle{plain}{
-	\pagestyle{fancy}
+  \pagestyle{fancy}
 }
 
 
@@ -186,6 +186,21 @@
 }
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%        其他功能设置
+\RequirePackage[hidelinks]{hyperref} % 提供超链接
+\hypersetup{
+  bookmarksnumbered=true, % 在书签中显示章节编号
+  bookmarksopen=true, % 展开书签
+}
+\RequirePackage{cleveref} % 智能引用
+\crefname{equation}{式}{式}
+\crefname{table}{表}{表}
+\crefname{figure}{图}{图}
+\RequirePackage{booktabs} % 提供三线表功能
+\RequirePackage{subcaption} % 提供子图功能
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%                  论文信息接口
 \tl_new:N \njust_zh_title_tl	% 中文标题
 \tl_new:N \njust_en_title_tl	% 英文标题
@@ -245,7 +260,7 @@
   direction .tl_set:N = \njust_research_direction_tl,	% 设置研究方向
   number .tl_set:N = \njust_student_number_tl,			% 设置学号
   major .tl_set:N = \njust_major_tl,						% 设置专业
-  school .tl_set:N = \njust_major_tl,						% 设置学院
+  school .tl_set:N = \njust_school_tl,						% 设置学院
   date .tl_set:N = \njust_date_tl,						% 设置时间
 }
 
@@ -662,20 +677,20 @@
 \vspace{3ex}
 
 {
-	\zihao{4}\justifying\linespread{1.2}\selectfont
-	本学位论文是我在导师的指导下取得的研究成果，尽我所知，在本学位论文中，
-	除了加以标注和致谢的部分外，不包含其他人已经发表或公布过的研究成果，
-	也不包含我为获得任何教育机构的学位或学历而使用过的材料。与我一同工作
-	的同事对本学位论文做出的贡献均已在论文中作了明确的说明。
-	\newline
-	\begin{flushleft}
-		学生签名：\underline{\hbox to 6em{}}\hspace*{6.5em}
-		年\hspace*{1em}月\hspace*{1em}日
-	\end{flushleft}
+  \zihao{4}\justifying\linespread{1.2}\selectfont
+  本学位论文是我在导师的指导下取得的研究成果，尽我所知，在本学位论文中，
+  除了加以标注和致谢的部分外，不包含其他人已经发表或公布过的研究成果，
+  也不包含我为获得任何教育机构的学位或学历而使用过的材料。与我一同工作
+  的同事对本学位论文做出的贡献均已在论文中作了明确的说明。
+  \newline
+  \begin{flushleft}
+    学生签名：\underline{\hbox to 6em{}}\hspace*{6.5em}
+    年\hspace*{1em}月\hspace*{1em}日
+  \end{flushleft}
 }
 \vspace*{12em}
 \begin{center}
-	{\bfseries\zihao{3}{学位论文使用授权声明}}
+  {\bfseries\zihao{3}{学位论文使用授权声明}}
 \end{center}
 {
 \vspace*{1em}
@@ -687,8 +702,8 @@
 
 \vspace*{2em}
 \begin{flushleft}
-	学生签名：\underline{\hbox to 6em{}}\hspace*{6.5em}
-	年\hspace*{1em}月\hspace*{1em}日
+  学生签名：\underline{\hbox to 6em{}}\hspace*{6.5em}
+  年\hspace*{1em}月\hspace*{1em}日
 \end{flushleft}
 }
 \newpage
@@ -699,33 +714,33 @@
 %%              目录生成命令
 \newcommand\NJUSTContents
 {
-	\ifnum\value{tempstate}=0
-		\pagenumbering{Roman}
-	\fi
-	{\tableofcontents}
+  \ifnum\value{tempstate}=0
+    \pagenumbering{Roman}
+  \fi
+  {\tableofcontents}
     \bool_if:nTF {\njust_figtab_contents_bool}{
-		\newlength{\figlen}
-		\newlength{\tablen}
+    \newlength{\figlen}
+    \newlength{\tablen}
 
-		\renewcommand{\cftfigpresnum}{\figurename\enspace}
-		\renewcommand{\cfttabpresnum}{\tablename\enspace}
-		%\renewcommand{\cftfigaftersnum}{}
-		%\renewcommand{\cfttabaftersnum}{}
-		\settowidth{\figlen}{\cftfigpresnum\cftfigaftersnum}
-		\settowidth{\tablen}{\cfttabpresnum\cfttabaftersnum}
-		\addtolength{\cftfignumwidth}{\figlen}
-		\addtolength{\cfttabnumwidth}{\tablen}
-		\newpage
-		{\contentsoffigtabs}
+    \renewcommand{\cftfigpresnum}{\figurename\enspace}
+    \renewcommand{\cfttabpresnum}{\tablename\enspace}
+    %\renewcommand{\cftfigaftersnum}{}
+    %\renewcommand{\cfttabaftersnum}{}
+    \settowidth{\figlen}{\cftfigpresnum\cftfigaftersnum}
+    \settowidth{\tablen}{\cfttabpresnum\cfttabaftersnum}
+    \addtolength{\cftfignumwidth}{\figlen}
+    \addtolength{\cfttabnumwidth}{\tablen}
+    \newpage
+    {\contentsoffigtabs}
     }
     {
         %不添加图表目录
     }
-	\newpage
+  \newpage
 
-	\IfEvenAddBlankPage{\RomanToInt{\thepage}}
+  \IfEvenAddBlankPage{\RomanToInt{\thepage}}
 
-	\pagenumbering{arabic}
+  \pagenumbering{arabic}
 
 }
 
@@ -734,15 +749,15 @@
 %% 致谢环境
 \DeclareDocumentCommand\thanks{}
 {
-	\clearpage
-	\begingroup
-		\ctexset{section/break=}
-		\begin{center}
-			\section*{致\hspace*{2em}谢}
-			\addcontentsline{toc}{section}{\bfseries 致\hspace*{2em}谢}
-			\markboth{致\hspace*{2em}谢}{}
-		\end{center}
-	\endgroup
+  \clearpage
+  \begingroup
+    \ctexset{section/break=}
+  \begin{center}
+    \section*{致\hspace*{2em}谢}
+    \addcontentsline{toc}{section}{\bfseries 致\hspace*{2em}谢}
+    \markboth{致\hspace*{2em}谢}{}
+  \end{center}
+  \endgroup
 
 }
 
@@ -754,13 +769,13 @@
 
 \NewDocumentCommand\printreference{}
 {
-	\newpage
-	
-	\begingroup
-		\ctexset{section/format += \centering }
-		\addcontentsline{toc}{section}{参考文献}
-		\markboth{参考文献}{}
-		\printbibliography[heading=bibliography,title={参考文献}]
-	\endgroup
+  \newpage
+  
+  \begingroup
+    \ctexset{section/format += \centering }
+    \addcontentsline{toc}{section}{参考文献}
+    \markboth{参考文献}{}
+    \printbibliography[heading=bibliography,title={参考文献}]
+  \endgroup
 }
 \ExplSyntaxOff

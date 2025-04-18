@@ -202,7 +202,7 @@
 \end{lstlisting}
 
 \subsubsection{编号公式}
-式(\ref{eq:continuity Equation}) 是连续方程。
+\Cref{eq:continuity Equation} 是连续方程。
 \begin{equation}
     \frac{\partial}{\partial t}\oiiint\limits_{\mathcal{V}} \rho 
     \,\mathrm{d} \mathcal{V} +\oiint\limits _S \rho \mathbf{V}\cdot 
@@ -254,7 +254,7 @@ $\displaystyle  \frac{1}{2}$,行间公式
 {\ttfamily eps}等图片格式，不接受{\ttfamily svg}格式的
 矢量图片。
 
-如下图\ref{fig:B787}是波音公司的梦想客机(dreamliner)。
+如下\Cref{fig:B787}是波音公司的梦想客机(dreamliner)。
 \begin{figure}[!ht]
     \centering 
     \includegraphics[width=\textwidth]{./figure/787-dreamliner.jpeg}    
@@ -271,7 +271,7 @@ $\displaystyle  \frac{1}{2}$,行间公式
     \end{figure}   
 \end{lstlisting}
 
-也可以插入一些子图,如下图\ref{fig:A350} 
+也可以插入一些子图,如下\Cref{fig:A350} 
 \begin{figure}[!ht]
     \centering 
     \begin{subcaptionblock}{0.48\textwidth}
@@ -312,11 +312,12 @@ $\displaystyle  \frac{1}{2}$,行间公式
 
 \subsection{表格}
 论文一般要求插入三线表，需要在导言区引用宏包{\ttfamily booktabs}
+（该宏包已在V0.2.1版本之后，由模板添加，所以不需要在导言区引用）
 \begin{lstlisting}
     \usepackage{booktabs}
 \end{lstlisting}
 
-比如下表\ref{tab:example}
+比如下\Cref{tab:example}
 \begin{table}[!ht]
     \centering 
     \caption{示例表}
