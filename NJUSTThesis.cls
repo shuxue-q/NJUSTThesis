@@ -677,7 +677,7 @@
 \vspace{3ex}
 
 {
-  \zihao{4}\justifying\linespread{1.2}\selectfont
+  \zihao{4}\justifying\linespread{1.2}\selectfont\hspace*{2em}
   本学位论文是我在导师的指导下取得的研究成果，尽我所知，在本学位论文中，
   除了加以标注和致谢的部分外，不包含其他人已经发表或公布过的研究成果，
   也不包含我为获得任何教育机构的学位或学历而使用过的材料。与我一同工作
