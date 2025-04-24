@@ -59,6 +59,18 @@
 \end{enumerate}
 
 \section{NJUSTThesis模板介绍}
+\subsection{一些基本知识}
+下面是{\ttfamily main.tex}文件中的文件格式的
+介绍，你需要了解这些基本知识。
+\begin{lstlisting}
+  \documentclass{NJUSTThesis}
+  % 这里是导言区
+  % 一些预定义格式和宏包引用放在该处
+
+  \begin{document}
+  % 这里是正文内容，你所写的论文就放在该处
+  \end{document}
+\end{lstlisting}
 \subsection{标题}
 在开始之前必须要在导言区指定指定论文标题，包括中文和英文，
 \begin{lstlisting}
@@ -368,6 +380,14 @@ $\displaystyle  \frac{1}{2}$,行间公式
     \addbibresource[location=local]{reference.bib}
     
     % 打印参考文献
+    % 这句命令必须要添加在 \end{document} 命令之前
+    % 以打印参考文献条目，否则将不会打印参考文献
+    % 该命令你可以放在任何地方，则会在该命令的当前
+    % 打印参考文献的条目
+    % NOTE：该命令不可使用两次，以防出现不可预知的
+    % 错误，即该命令只能在全文中出现一次
+    % 为加快编译速度，建议仅用xelatex编译，最后定稿
+    % 时，再使用编译链编译，以生成正确的交叉引用
     \printreference
 \end{lstlisting}
 
