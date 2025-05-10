@@ -50,7 +50,7 @@
 }
 
 %%           设置页眉
-\RequirePackage{tocloft}
+\RequirePackage[titles]{tocloft}
 \pagestyle{fancy}
 \fancyhf{}
 \fancyhead[LO,RE]{\zihao{-5}学士学位论文}
@@ -92,6 +92,9 @@
 \renewcommand{\cftbeforetoctitleskip}{18pt}
 \renewcommand{\cftaftertoctitleskip}{18pt}
 
+% 调整目录标题之间的距离
+\setlength\cftbeforesecskip{1.5pt}
+\setlength\cftbeforesubsecskip{1pt}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%           公式编号设置
 \RequirePackage{amsmath}
@@ -196,6 +199,10 @@
 \crefname{equation}{式}{式}
 \crefname{table}{表}{表}
 \crefname{figure}{图}{图}
+\newcommand{\crefrangeconjunction}{—}
+\crefrangeformat{figure}{图(#3#1#4)—(#5#2#6)}
+\crefrangeformat{table}{表(#3#1#4)—(#5#2#6)}
+\crefrangeformat{equation}{式(#3#1#4)—(#5#2#6)}
 \RequirePackage{booktabs} % 提供三线表功能
 \RequirePackage{subcaption} % 提供子图功能
 
