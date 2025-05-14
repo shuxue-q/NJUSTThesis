@@ -193,6 +193,9 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%        其他功能设置
 \RequirePackage[hidelinks]{hyperref} % 提供超链接
+\RequirePackage{booktabs} % 提供三线表功能
+\RequirePackage[labelformat=simple]{subcaption} % 提供子图功能
+
 \hypersetup{
   bookmarksnumbered=true, % 在书签中显示章节编号
   bookmarksopen=true, % 展开书签
@@ -204,14 +207,12 @@
 \Crefformat{equation}{式(#2#1#3)}
 \Crefformat{table}{表(#2#1#3)}
 \Crefformat{figure}{图(#2#1#3)}
+\renewcommand\thesubfigure{(\alph{subfigure})}
 
 \newcommand{\crefrangeconjunction}{—}
 \crefrangeformat{figure}{图(#3#1#4)—(#5#2#6)}
 \crefrangeformat{table}{表(#3#1#4)—(#5#2#6)}
 \crefrangeformat{equation}{式(#3#1#4)—(#5#2#6)}
-\RequirePackage{booktabs} % 提供三线表功能
-\RequirePackage{subcaption} % 提供子图功能
-
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%                  论文信息接口
