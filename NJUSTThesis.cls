@@ -91,10 +91,12 @@
 \renewcommand{\cftaftertoctitle}{\hfill}
 \renewcommand{\cftbeforetoctitleskip}{18pt}
 \renewcommand{\cftaftertoctitleskip}{18pt}
-
 % 调整目录标题之间的距离
 \setlength\cftbeforesecskip{1.5pt}
 \setlength\cftbeforesubsecskip{1pt}
+% 调整目录引导线的间距
+\renewcommand{\@dotsep}{0.5}
+\renewenvironment{\cftdotsep}{0.5}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%           公式编号设置
 \RequirePackage{amsmath}
@@ -196,9 +198,13 @@
   bookmarksopen=true, % 展开书签
 }
 \RequirePackage{cleveref} % 智能引用
-\crefname{equation}{式}{式}
-\crefname{table}{表}{表}
-\crefname{figure}{图}{图}
+\crefformat{equation}{式(#2#1#3)}
+\crefformat{table}{表(#2#1#3)}
+\crefformat{figure}{图(#2#1#3)}
+\Crefformat{equation}{式(#2#1#3)}
+\Crefformat{table}{表(#2#1#3)}
+\Crefformat{figure}{图(#2#1#3)}
+
 \newcommand{\crefrangeconjunction}{—}
 \crefrangeformat{figure}{图(#3#1#4)—(#5#2#6)}
 \crefrangeformat{table}{表(#3#1#4)—(#5#2#6)}
@@ -684,7 +690,7 @@
 \vspace{3ex}
 
 {
-  \zihao{4}\justifying\linespread{1.2}\selectfont\hspace*{2em}
+  \zihao{4}\justifying\linespread{1.2}\selectfont\par
   本学位论文是我在导师的指导下取得的研究成果，尽我所知，在本学位论文中，
   除了加以标注和致谢的部分外，不包含其他人已经发表或公布过的研究成果，
   也不包含我为获得任何教育机构的学位或学历而使用过的材料。与我一同工作
@@ -771,7 +777,7 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%              参考文献
 %% 参考文献
-\RequirePackage[backend=biber,bibstyle=gb7714-2015,doi=false,url=false,gbnamefmt=lowercase%nature,% 加载 biblatex 宏包，使用参考文献citestyle=gb7714-2015%,backref=true % 其中后端 backend 使用 biber
+\RequirePackage[backend=biber,style=gb7714-2015,doi=false,url=false,gbnamefmt=lowercase%nature,% 加载 biblatex 宏包，使用参考文献citestyle=gb7714-2015%,backref=true % 其中后端 backend 使用 biber
 ]{biblatex} % 标注(引用)样式 citestyle，著录样式 bibstyle 都采用 gb7714-2015 样式
 
 \NewDocumentCommand\printreference{}
