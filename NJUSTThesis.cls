@@ -50,7 +50,7 @@
 }
 
 %%           设置页眉
-\RequirePackage[titles]{tocloft}
+\RequirePackage{tocloft}
 \pagestyle{fancy}
 \fancyhf{}
 \fancyhead[LO,RE]{\zihao{-5}学士学位论文}
@@ -82,8 +82,8 @@
 \renewcommand\cftsecleader{\bfseries\cftdotfill{\cftdotsep}}
 \renewcommand\cftsecfont{\zihao{4}\bfseries}
 \renewcommand\cftsecpagefont{\zihao{4}\bfseries}
-\renewcommand\cftsubsecfont{\zihao{-4}}
-\renewcommand\cftsubsecpagefont{\zihao{-4}}
+\renewcommand\cftsubsecfont{\zihao{-4}\bfseries}
+\renewcommand\cftsubsecpagefont{\zihao{-4}\bfseries}
 \renewcommand\cftsubsubsecfont{\zihao{-4}}
 \renewcommand\cftsubsubsecpagefont{\zihao{-4}}
 \renewcommand\cfttoctitlefont{\hfill\zihao{3}\bfseries}
@@ -91,12 +91,13 @@
 \renewcommand{\cftaftertoctitle}{\hfill}
 \renewcommand{\cftbeforetoctitleskip}{18pt}
 \renewcommand{\cftaftertoctitleskip}{18pt}
-% 调整目录标题之间的距离
+% 设置目录引导线的间距
+\renewcommand{\@dotsep}{0.5}
+\renewcommand{\cftdotsep}{0.5}
+% 设置一级标题和二级标题之间的垂直间距
 \setlength\cftbeforesecskip{1.5pt}
 \setlength\cftbeforesubsecskip{1pt}
-% 调整目录引导线的间距
-\renewcommand{\@dotsep}{0.5}
-\renewenvironment{\cftdotsep}{0.5}
+
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%           公式编号设置
 \RequirePackage{amsmath}
@@ -191,27 +192,34 @@
 }
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% 有序列表设置
+\RequirePackage{enumitem}
+\setlist[enumerate,1]{label=(\arabic*)}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%        其他功能设置
 \RequirePackage[hidelinks]{hyperref} % 提供超链接
 \RequirePackage{booktabs} % 提供三线表功能
 \RequirePackage[labelformat=simple]{subcaption} % 提供子图功能
+\RequirePackage{cleveref} % 智能引用
 
 \hypersetup{
   bookmarksnumbered=true, % 在书签中显示章节编号
   bookmarksopen=true, % 展开书签
 }
-\RequirePackage{cleveref} % 智能引用
 \crefformat{equation}{式(#2#1#3)}
-\crefformat{table}{表(#2#1#3)}
-\crefformat{figure}{图(#2#1#3)}
+\crefformat{table}{表#2#1#3}
+\crefformat{figure}{图#2#1#3}
 \Crefformat{equation}{式(#2#1#3)}
-\Crefformat{table}{表(#2#1#3)}
-\Crefformat{figure}{图(#2#1#3)}
+\Crefformat{table}{表#2#1#3}
+\Crefformat{figure}{图#2#1#3}
 \renewcommand\thesubfigure{(\alph{subfigure})}
 
+
 \newcommand{\crefrangeconjunction}{—}
-\crefrangeformat{figure}{图(#3#1#4)—(#5#2#6)}
-\crefrangeformat{table}{表(#3#1#4)—(#5#2#6)}
+\crefrangeformat{figure}{图#3#1#4—#5#2#6}
+\crefrangeformat{table}{表#3#1#4-#5#2#6}
 \crefrangeformat{equation}{式(#3#1#4)—(#5#2#6)}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -235,6 +243,7 @@
 \tl_new:N \njust_en_keywords_tl    % 英文关键词
 \bool_new:N \njust_figtab_contents_bool % 图表目录
 \tl_new:N \njust_fontset_tl 	% 字体设置
+\bool_new:N \njust_print  % 是否打印
 
 %% 设置默认值
 \tl_set:Nn \njust_zh_title_tl {南京理工大学本科学士学位论文}
@@ -256,6 +265,7 @@
 \tl_set:Nn \njust_en_keywords_tl {NJUST,paper~template}
 \bool_set_false:N \njust_figtab_contents_bool
 \tl_set:Nn \njust_fontset_tl {songti}
+\bool_set_false:N \njust_print
 
 \keys_define:nn {njust}	{
   info .code:n = {\keys_set:nn {njust/info}{#1}},	% 信息
@@ -264,6 +274,7 @@
   fontset .choice:,
   fontset / songti .code:n = {\tl_set:Nn \njust_fontset_tl {songti}},
   fontset / source .code:n = {\tl_set:Nn \njust_fontset_tl {Source~Han~Serif~SC}},
+  print .bool_set:N = \njust_print,
 }
 
 \keys_define:nn {njust/info}	{
@@ -591,6 +602,13 @@
     \end{tabular}
   \end{table*}
   \newpage
+  \bool_if:nTF {\njust_print}{
+    \thispagestyle{empty}
+    \newpage
+    \null\newpage
+  }{
+    % 非打印版本不添加空白页
+  }
 
 % 第二页封面，中文封面
 {
@@ -636,6 +654,13 @@
     \end{center}
   }
   \newpage
+  \bool_if:nTF {\njust_print}{
+    \thispagestyle{empty}
+    \newpage
+    \null\newpage
+  }{
+    % 非打印版本，不添加空白页
+  }
 % 第三页封面，英文封面
 {
   \thispagestyle{empty}
@@ -677,6 +702,14 @@
     \end{center}
 }
   \newpage
+  \bool_if:nTF {\njust_print}{
+    \thispagestyle{empty}
+    \newpage
+    \null\newpage
+  }
+  {
+    % 非打印版本，不添加空白页
+  }
 }
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -731,7 +764,10 @@
   \ifnum\value{tempstate}=0
     \pagenumbering{Roman}
   \fi
-  {\tableofcontents}
+  {
+    \tableofcontents
+    \markboth{目录}{righthead}
+  }
     \bool_if:nTF {\njust_figtab_contents_bool}{
     \newlength{\figlen}
     \newlength{\tablen}
@@ -778,9 +814,11 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%              参考文献
 %% 参考文献
-\RequirePackage[backend=biber,style=gb7714-2015,doi=false,url=false,gbnamefmt=lowercase%nature,% 加载 biblatex 宏包，使用参考文献citestyle=gb7714-2015%,backref=true % 其中后端 backend 使用 biber
+\RequirePackage[backend=biber,style=gb7714-2015ms,doi=false,url=false,gbnamefmt=lowercase,eprint=false,gbpunctin=false,gbcitelabel=bracket%nature,% 加载 biblatex 宏包，使用参考文献citestyle=gb7714-2015%,backref=true % 其中后端 backend 使用 biber
 ]{biblatex} % 标注(引用)样式 citestyle，著录样式 bibstyle 都采用 gb7714-2015 样式
-
+%\usepackage[citestyle=super]{gbt7714}
+\DefineBibliographyStrings{english}{in={}}
+\DefineBibliographyStrings{english}{incn={}}
 \NewDocumentCommand\printreference{}
 {
   \newpage
