@@ -1,0 +1,31 @@
+\ProvidesFile{gb7714-NJUST.bbx}
+  [2022/03/10 v0.1 a biblatex bibliography style for NJUSTThesis]
+  
+
+\RequireBibliographyStyle{gb7714-2015}
+
+
+% 重设专利的样式以满足学校要求
+%   重设专利title的输出，将文献类型标识符输出出去
+%
+\newbibmacro*{patenttitle}{%原输出来自biblatex.def文件
+  \ifboolexpr{%
+    test{\iffieldundef{title}}%
+    and%
+    test{\iffieldundef{subtitle}}%
+  }%
+    {}%
+    {\printtext[title]{\bibtitlefont%
+       \printfield[titlecase]{title}%
+       \ifboolexpr{test {\iffieldundef{subtitle}}}%这里增加了对子标题的判断，解决不判断多一个点的问题
+       {}{\setunit{\subtitlepunct}%
+       \printfield[titlecase]{subtitle}}%
+       \iffieldundef{titleaddon}{}%判断一下titleaddon，否则直接加可能多一个空格
+        {\setunit{\subtitlepunct}\printfield{titleaddon}}%
+        \iftoggle{bbx:gbtype}{\printfield[gbtypeflag]{usera}}{}%
+        \setunit{\adddot}\printfield{number}%写专利号
+     %\iffieldundef{booktitle}{\newunit}{}%当title是析出时，不要标点
+     %\newunit
+     }%
+}%
+}

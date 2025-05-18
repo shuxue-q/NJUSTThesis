@@ -574,7 +574,7 @@
       \end{tabular}
     \end{table*}
   }
-  \vspace*{-0.5em}
+  \vspace*{1.6em}
   \begin{table*}[!ht]
     \centering
     \renewcommand\arraystretch{1.1}
@@ -766,7 +766,7 @@
   \fi
   {
     \tableofcontents
-    \markboth{目录}{righthead}
+    \markboth{目录}{}
   }
     \bool_if:nTF {\njust_figtab_contents_bool}{
     \newlength{\figlen}
@@ -814,11 +814,12 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%              参考文献
 %% 参考文献
-\RequirePackage[backend=biber,style=gb7714-2015ms,doi=false,url=false,gbnamefmt=lowercase,eprint=false,gbpunctin=false,gbcitelabel=bracket%nature,% 加载 biblatex 宏包，使用参考文献citestyle=gb7714-2015%,backref=true % 其中后端 backend 使用 biber
+\RequirePackage[backend=biber,style=gb7714-NJUST,doi=false,url=false,gbnamefmt=lowercase,eprint=false,gbpunctin=false,gbcitelabel=bracket%nature,% 加载 biblatex 宏包，使用参考文献citestyle=gb7714-2015%,backref=true % 其中后端 backend 使用 biber
 ]{biblatex} % 标注(引用)样式 citestyle，著录样式 bibstyle 都采用 gb7714-2015 样式
+% \RequirePackage[backend=biber,style=gb7714-NJUST,gbtype=true]{biblatex}
 %\usepackage[citestyle=super]{gbt7714}
-\DefineBibliographyStrings{english}{in={}}
-\DefineBibliographyStrings{english}{incn={}}
+%\DefineBibliographyStrings{english}{in={}}
+%\DefineBibliographyStrings{english}{incn={}}
 \NewDocumentCommand\printreference{}
 {
   \newpage
